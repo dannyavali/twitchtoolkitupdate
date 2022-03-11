@@ -1,5 +1,5 @@
 body {
-	background-color: #303030;
+    background-color: #787878;
 }
 
 .tab {
@@ -44,6 +44,7 @@ body {
     padding: 12px 20px 12px 40px;
     border: 1px solid #dddddd;
     margin-bottom: 12px;
+    background-color: #787878;
 }
 
 table {
