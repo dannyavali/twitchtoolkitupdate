@@ -6,6 +6,7 @@
 
 body {
     background-color: #787878;
+    color: #c7c7c7;
 }
 
 .tab {
@@ -32,6 +33,7 @@ body {
     display: none;
     animation: fadeEffect 320ms;
     border-top: none;
+    color: #c7c7c7;
 }
 
 @keyframes fadeEffect {
