@@ -1,18 +1,18 @@
 .site-header{
-    background-color: #787878;
+    background-color: #1c1c1c;
 }
 
 
 
 body {
-    background-color: #787878;
+    background-color: #1c1c1c;
     color: #c7c7c7;
 }
 
 .tab {
     overflow: hidden;
     border: 1px solid #000000;
-    background-color: #787878;
+    background-color: #1c1c1c;
 }
 
 .tab button {
@@ -52,7 +52,7 @@ body {
     padding: 12px 20px 12px 40px;
     border: 1px solid #000000;
     margin-bottom: 12px;
-    background-color: #787878;
+    background-color: #1c1c1c;
 }
 
 table {
@@ -122,7 +122,7 @@ span.metadata {
     font-size: 0.8em;
     padding: 0px;
     font-style: italic;
-    color: #5a5454;
+    color: #949494;
   }
 }
 
@@ -142,6 +142,6 @@ span.metadata {
   span.metadata {
     font-size: 0.85em;
     font-style: italic;
-    color: #5a5454;
+    color: #949494;
   }
 }
