@@ -10,7 +10,7 @@ body {
 
 .tab {
     overflow: hidden;
-    border: 1px solid #cccccc;
+    border: 1px solid #000000;
     background-color: #787878;
 }
 
@@ -59,25 +59,32 @@ table {
 
 th {
   font-size: 0.9em;
+  color: #c7c7c7;
 }
 
 th.priceWithData {
     width: 20%;
+    color: #c7c7c7;
 }
 th.karmaType {
   width: 20%;
+    color: #c7c7c7;
 }
 th.price {
     width: 15%;
+    color: #c7c7c7;
 }
 th.author {
   width: 30%;
+    color: #c7c7c7;
 }
 th.version {
   width: 20%;
+    color: #c7c7c7;
 }
 td.description {
     font-size: 0.8em;
+    color: #c7c7c7;
 }
 span.eventRedirect {
   cursor: pointer;
