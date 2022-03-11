@@ -68,7 +68,7 @@ mods:
   author: true
 
 # Build settings
-remote_theme: jekyll-theme-midnight
+remote_theme: SirRandoo/Type-on-Strap
 plugins:
   -
 
