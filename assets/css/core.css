@@ -58,7 +58,9 @@ body {
 table {
     display: table;
 }
-
+td {
+    color: #c7c7c7;
+}
 th {
   font-size: 0.9em;
   color: #c7c7c7;
