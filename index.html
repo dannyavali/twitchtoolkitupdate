@@ -1,227 +1,130 @@
----
-layout: page
-title: Store
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Nishiki's Store</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Nishiki's Store</h1>
+    <nav>
+      <ul>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<link rel="stylesheet" href="{{- 'assets/css/core.css' | relative_url -}} "/>
-<script src="{{- 'assets/js/tabs.js' | relative_url -}}"></script>
-<script src="{{- 'assets/js/filter.js' | relative_url -}}"></script>
-<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+  <main>
+    <section id="products">
+      <h2>Featured Products</h2>
+      <div class="product">
+        <img src="https://static.wikia.nocookie.net/yakuza/images/7/74/User516794_pic663188_1265282096.jpg" alt="Nishiki T-shirt">
+        <h3>Nishiki T-shirt</h3>
+        <p>Celebrate 10 years in the joint with this bold Nishiki T-shirt!</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://static.wikia.nocookie.net/yakuza/images/7/74/User516794_pic663188_1265282096.jpg" alt="Nishiki Poster">
+        <h3>Nishiki Poster</h3>
+        <p>Show your love for Nishiki with this epic poster for your wall!</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="https://static.wikia.nocookie.net/yakuza/images/7/74/User516794_pic663188_1265282096.jpg" alt="Nishiki Coffee Mug">
+        <h3>Nishiki Coffee Mug</h3>
+        <p>Enjoy your morning coffee with this stylish Nishiki coffee mug!</p>
+        <button>Add to Cart</button>
+      </div>
+    </section>
+    
+    <section id="about">
+      <h2>About Nishiki's Store</h2>
+      <p>At Nishiki's Store, we celebrate the legendary character Nishiki and his iconic quote, "10 years in the joint made you a fucking pussy!" Our products are designed for fans who appreciate Nishiki's badass attitude and unforgettable style.</p>
+    </section>
 
-{%- assign itemsForDisplay = '' | split: ',' -%}
-{%- assign eventsForDisplay = site.data.StoreIncidents.incitems | where_exp: "incident", "incident.price > 0" | sort: "abr" -%}
-{%- assign animalsForDisplay = site.data.StoreItems.items | where: "category", "Animal" | where_exp: "animal", "animal.price > 0" | sort: "abr" -%}
-{%- assign traitsForDisplay = '' | split: ',' -%}
-{%- assign kindsForDisplay = site.data.ShopExt.races | where: "enabled", "true" | sort: "name" -%}
-{%- assign weaponsForDisplay = '' | split: ',' -%}
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Have questions or comments? We'd love to hear from you! Send us a message at <a href="mailto:nishikistore@example.com">nishikistore@example.com</a>.</p>
+    </section>
+  </main>
 
-{%- for item in site.data.StoreItems.items -%}
-    {%- if item.price <= 0 -%}
-        {%- continue -%}
-    {%- endif -%}
+  <footer>
+    <p>&copy; 2022 Nishiki's Store. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+_css:
 
-    {%- if site.data.itemdata[item.defname].IsWeapon -%}
-        {%- assign weaponsForDisplay = weaponsForDisplay | push: item | sort: "abr" -%}
-        {%- continue -%}
-    {%- endif -%}
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('https://static.wikia.nocookie.net/yakuza/images/7/74/User516794_pic663188_1265282096.jpg');
+  background-size: 50px 50px;
+}
 
-    {%- if item.category != "Animal" -%}
-        {%- assign itemsForDisplay = itemsForDisplay | push: item | sort: "abr" -%}
-        {%- continue -%}
-    {%- endif -%}
-{%- endfor -%}
+header {
+  padding: 20px 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
 
-{%- for trait in site.data.ShopExt.traits -%}
-    {%- if trait.canAdd == true or trait.canRemove == true -%}
-        {%- assign traitsForDisplay = traitsForDisplay | push: trait | sort: "name" -%}
-    {%- endif -%}
-{%- endfor -%}
+header h1 {
+  margin: 0;
+}
 
-{%- assign buy = "" -%}
-{%- for command in site.data.commands -%}
-    {%- if command.data.isBuy == true -%}
-        {%- capture buy -%}
-            {{- command.usage | split: " " | first -}}
-        {%- endcapture -%}
-        {%- break -%}
-    {%- endif -%}
-{%- endfor -%}
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-<div class="tab">
-    {%- if itemsForDisplay.size > 0 -%}
-        {%- include tab.html id='items' -%}
-    {%- endif -%}
+nav li {
+  display: inline;
+  margin: 0 10px;
+}
 
-    {%- if eventsForDisplay.size > 0 -%}
-        {%- include tab.html id='events' -%}
-    {%- endif -%}
+nav a {
+  text-decoration: none;
+  color: #333;
+}
 
-    {%- if weaponsForDisplay.size > 0 -%}
-        {%- include tab.html id='weapons' -%}
-    {%- endif -%}
+nav a:hover {
+  text-decoration: underline;
+}
 
-    {%- if animalsForDisplay.size > 0 -%}
-        {%- include tab.html id='animals' -%}
-    {%- endif -%}
+main {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
 
-    {%- if traitsForDisplay.size > 0 -%}
-        {%- include tab.html id='traits' -%}
-    {%- endif -%}
+.product {
+  display: inline-block;
+  width: 30%;
+  margin: 20px;
+  text-align: center;
+}
 
-    {%- if kindsForDisplay.size > 0 -%}
-        {%- include tab.html id='kinds' -%}
-    {%- endif -%}
-</div>
+.product img {
+  width: 100%;
+  height: auto;
+}
 
-{%- if itemsForDisplay.size > 0 -%}
-    {%- assign headers = '' | split: ',' -%}
-    {%- assign headers = headers | push: site.data.language.name_header -%}
-    {%- assign headers = headers | push: site.data.language.cost_header -%}
+button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
 
-    {%- if site.store.items.category -%}
-        {%- assign headers = headers | push: site.data.language.category_header -%}
-    {%- endif -%}
+button:hover {
+  background-color: #da190b;
+}
 
-    {%- assign headers = headers | join: ',' -%}
-
-    {%- include store_tab.html 
-        id='items'
-        type='Item'
-        buyName=buy
-        headers=headers
-        priceDataHeaders='Cost'
-        displayData=itemsForDisplay
-        placeholder=site.data.language.search_items -%}
-{%- endif -%}
-
-{%- if eventsForDisplay.size > 0 -%}
-    {% capture headers %}
-        {{ site.data.language.name_header }},{{ site.data.language.cost_header }},{{ site.data.language.karma_type_header }}
-    {% endcapture %}
-
-    {%- include store_tab.html
-        id='events'
-        type='Event'
-        buyName=buy
-        headers=headers
-        karmaHeaders=site.data.language.karma_type_header
-        displayData=eventsForDisplay
-        placeholder=site.data.language.search_events -%}
-{%- endif -%}
-
-{%- if weaponsForDisplay.size > 0 -%}
-    {% capture headers %}
-        {{ site.data.language.name_header }},{{ site.data.language.cost_header }}
-    {% endcapture %}
-
-    {%- include store_tab.html
-        id='weapons'
-        type='Weapon'
-        buyName=buy
-        headers=headers
-        priceDataHeaders=site.data.language.cost_header
-        displayData=weaponsForDisplay
-        placeholder=site.data.language.search_weapons -%}
-{%- endif -%}
-
-{%- if animalsForDisplay.size > 0 -%}
-    {% capture headers %}
-        {{ site.data.language.name_header }},{{ site.data.language.cost_header }}
-    {% endcapture %}
-
-    {%- include store_tab.html
-        id='animals'
-        type='Animal'
-        buyName=buy
-        headers=headers
-        priceDataHeaders=site.data.language.cost_header
-        displayData=animalsForDisplay
-        placeholder=site.data.language.search_animals -%}
-{%- endif -%}
-
-{%- if traitsForDisplay.size > 0 -%}
-    {%- assign headers = site.data.language.name_header | split: ',' -%}
-
-    {%- if site.store.traits.description or site.store.traits.conflicts or site.store.traits.stats or site.store.traits.limit -%}
-        {%- assign headers = headers | push: site.data.language.description_header -%}
-    {%- endif -%}
-
-    {%- assign headers = headers | push: site.data.language.add_cost_header -%}
-    {%- assign headers = headers | push: site.data.language.remove_cost_header -%}
-    {%- assign headers = headers | join: ',' -%}
-
-    {% capture priceDataHeaders %}
-        {{ site.data.language.add_cost_header }},{{ site.data.language.remove_cost_header }}
-    {% endcapture %}
-
-    {%- include store_tab.html
-        id='traits'
-        type='Trait'
-        buyName=buyName
-        priceDataHeaders=priceDataHeaders
-        headers=headers
-        displayData=traitsForDisplay
-        placeholder=site.data.language.search_traits -%}
-{%- endif -%}
-
-{%- if kindsForDisplay.size > 0 -%}
-    {% capture headers %}
-        {{ site.data.language.name_header }},{{ site.data.language.cost_header }}
-    {% endcapture %}
-
-    {%- include store_tab.html
-        id='kinds'
-        type='Pawn'
-        buyName=buyName
-        priceDataHeaders=site.data.language.price_header
-        headers=headers
-        displayData=kindsForDisplay
-        placeholder=site.data.language.search_pawn_kinds -%}
-{%- endif -%}
-
-
-<script>
-    window.addEventListener("load", function (event) {
-        var query = "";
-        var queryStarted = false;
-        var tab = "items";
-        var url = document.URL;
-
-        for (var i = 0; i < url.length; i++) {
-            var e = url[i];
-
-            if (e == "?") {
-                queryStarted = true;
-                continue;
-            }
-
-            if (e == "#" || e == "/") {
-                queryStarted = false;
-                continue;
-            }
-
-            if (queryStarted) {
-                query = query + e;
-            }
-        }
-
-        if (query.length <= 0) {
-            return document.getElementsByClassName("tabLinks")[0].click();
-        }
-
-        var segments = query.split("&");
-        for (var i = 0; i < segments.length; i++) {
-            var e = segments[i].split('=');
-
-            if (e[1] == null || e[1] == "") {
-                continue;
-            }
-
-            if (e[0].toUpperCase() == "TAB") {
-                return changeTab({ currentTarget: document.getElementById(e[1]) }, e[1])
-            }
-        }
-
-        return document.getElementsByClassName("tabLinks")[0].click();
-    });
-</script>
+footer {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
